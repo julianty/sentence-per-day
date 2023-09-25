@@ -22,4 +22,9 @@ router.get("/", async function (req, res, next) {
   }
 });
 
+router.get("/api/data", async function (req, res, next) {
+  const data = {text: "Hello World"}
+  res.json(data)
+})
+
 module.exports = router;
