@@ -2,17 +2,29 @@ import logo from "./logo.svg";
 import "./App.css";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { Box, Typography, Stack } from "@mui/material";
+import Navbar from "./components/Navbar";
+import SentenceCard from "./components/SentenceCard";
 
 function App() {
-  const [data, setData] = useState("Hi World");
+  const [activeSentence, setActiveSentence] = useState("");
   useEffect(() => {
     axios.get("http://localhost:3000/api/data").then((response) => {
-      console.log(response);
-      setData(response.data.text);
+      console.log(response.data.sentence.text);
+      setActiveSentence(response.data.sentence.text);
     });
   }, []);
 
-  return <div className="App">{data}</div>;
+  return (
+    <Box>
+      <Navbar />
+      <Stack alignItems={"center"} sx={{ margin: "16px" }} spacing={2}>
+        <SentenceCard sentence={activeSentence} />
+        <SentenceCard sentence={activeSentence} />
+        <SentenceCard sentence={activeSentence} />
+      </Stack>
+    </Box>
+  );
 }
 
 export default App;
