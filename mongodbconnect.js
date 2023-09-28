@@ -1,4 +1,6 @@
 const { MongoClient, ServerApiVersion } = require("mongodb");
+const mongoose = require("mongoose");
+
 const uri =
   "mongodb+srv://julianty:Wannamakeadb@sentence-per-day.vf9xibg.mongodb.net/?retryWrites=true&w=majority";
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
@@ -23,4 +25,25 @@ async function run() {
     await client.close();
   }
 }
-run().catch(console.dir);
+// run().catch(console.dir);
+
+const User = require("./Models/User");
+async function testUpload() {
+  try {
+    // const db = client.db("SentencePerDay");
+    // const coll = db.collection("Users");
+    mongoose.connect(uri, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      dbName: "SentencePerDay",
+    });
+
+    const newUser = new User({ name: "admin" });
+    await newUser.save().catch((err) => console.log(err));
+    // const result = await coll.insertOne(newUser);
+  } finally {
+    await client.close();
+  }
+}
+
+testUpload().catch(console.dir);
