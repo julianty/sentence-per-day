@@ -7,4 +7,4 @@ const UserSchema = new Schema({
   answers: { type: Schema.Types.ObjectId, ref: "Answer" },
 });
 
-module.exports = mongoose.model("User", UserSchema);
+module.exports = mongoose.model("User", UserSchema, "Users");
