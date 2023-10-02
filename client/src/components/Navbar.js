@@ -5,7 +5,7 @@ export default function Navbar() {
     <Box>
       <AppBar position="static">
         <Toolbar>
-          <Typography>Setence per day</Typography>
+          <Typography>Sentence per day</Typography>
         </Toolbar>
       </AppBar>
     </Box>
